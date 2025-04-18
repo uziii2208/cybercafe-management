@@ -1,0 +1,12 @@
+E:\Cybersecurity\CybercafeApp\src\Core\bin\Debug\net9.0\Core.deps.json
+E:\Cybersecurity\CybercafeApp\src\Core\bin\Debug\net9.0\Core.dll
+E:\Cybersecurity\CybercafeApp\src\Core\bin\Debug\net9.0\Core.pdb
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.csproj.AssemblyReference.cache
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.AssemblyInfoInputs.cache
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.AssemblyInfo.cs
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.csproj.CoreCompileInputs.cache
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.dll
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\refint\Core.dll
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\Core.pdb
+E:\Cybersecurity\CybercafeApp\src\Core\obj\Debug\net9.0\ref\Core.dll

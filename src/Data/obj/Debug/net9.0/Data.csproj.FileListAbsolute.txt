@@ -1,0 +1,17 @@
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Data.deps.json
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Data.runtimeconfig.json
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Data.dll
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Data.pdb
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Core.dll
+E:\Cybersecurity\CybercafeApp\src\Data\bin\Debug\net9.0\Core.pdb
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.AssemblyInfo.cs
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.csproj.CoreCompileInputs.cache
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.csproj.Up2Date
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.dll
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\refint\Data.dll
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.pdb
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
+E:\Cybersecurity\CybercafeApp\src\Data\obj\Debug\net9.0\ref\Data.dll
