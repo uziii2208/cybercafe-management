@@ -32,14 +32,14 @@ public class MenuService
         while (!exit)
         {
             Console.Clear();
-            Console.WriteLine("=== Hệ Thống Quản Lý Cybercafe ===");
-            Console.WriteLine("1. Quản Lý Khách Hàng");
-            Console.WriteLine("2. Quản Lý Máy Trạm");
-            Console.WriteLine("3. Quản Lý Phiên");
-            Console.WriteLine("4. Quản Lý Dịch Vụ");
-            Console.WriteLine("5. Xem Báo Cáo");
-            Console.WriteLine("0. Thoát");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== He Thong Quan Ly Cybercafe ===");
+            Console.WriteLine("1. Quan Ly Khach Hang");
+            Console.WriteLine("2. Quan Ly May Tram");
+            Console.WriteLine("3. Quan Ly Phien");
+            Console.WriteLine("4. Quan Ly Dich Vu");
+            Console.WriteLine("5. Xem Bao Cao");
+            Console.WriteLine("0. Thoat");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -66,16 +66,16 @@ public class MenuService
                             exit = true;
                             break;
                         default:
-                            Console.WriteLine("Lựa chọn không hợp lệ. Nhấn phím bất kỳ để tiếp tục...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Lỗi xảy ra trong menu chính");
-                    Console.WriteLine($"Lỗi: {ex.Message}");
-                    Console.WriteLine("Nhấn phím bất kỳ để tiếp tục...");
+                    Log.Error(ex, "Loi xay ra trong menu chinh");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -88,14 +88,14 @@ public class MenuService
         while (!back)
         {
             Console.Clear();
-            Console.WriteLine("=== Quản Lý Khách Hàng ===");
-            Console.WriteLine("1. Thêm Khách Hàng Mới");
-            Console.WriteLine("2. Xem Chi Tiết Khách Hàng");
-            Console.WriteLine("3. Cập Nhật Khách Hàng");
-            Console.WriteLine("4. Xóa Khách Hàng");
-            Console.WriteLine("5. Xem Tất Cả Khách Hàng");
-            Console.WriteLine("0. Quay Lại Menu Chính");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== Quan Ly Khach Hang ===");
+            Console.WriteLine("1. Them Khach Hang Moi");
+            Console.WriteLine("2. Xem Chi Tiet Khach Hang");
+            Console.WriteLine("3. Cap Nhat Khach Hang");
+            Console.WriteLine("4. Xoa Khach Hang");
+            Console.WriteLine("5. Xem Tat Ca Khach Hang");
+            Console.WriteLine("0. Quay Lai Menu Chinh");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -122,16 +122,16 @@ public class MenuService
                             back = true;
                             break;
                         default:
-                            Console.WriteLine("Lựa chọn không hợp lệ. Nhấn phím bất kỳ để tiếp tục...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Lỗi xảy ra trong menu khách hàng");
-                    Console.WriteLine($"Lỗi: {ex.Message}");
-                    Console.WriteLine("Nhấn phím bất kỳ để tiếp tục...");
+                    Log.Error(ex, "Loi xay ra trong menu khach hang");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -141,15 +141,15 @@ public class MenuService
     private async Task AddNewCustomerAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Thêm Khách Hàng Mới ===");
+        Console.WriteLine("=== Them Khach Hang Moi ===");
         
-        Console.Write("Nhập Tên: ");
+        Console.Write("Nhap Ten: ");
         string name = Console.ReadLine() ?? string.Empty;
         
-        Console.Write("Nhập Email: ");
+        Console.Write("Nhap Email: ");
         string email = Console.ReadLine() ?? string.Empty;
         
-        Console.Write("Nhập Số Điện Thoại: ");
+        Console.Write("Nhap So Dien Thoai: ");
         string phone = Console.ReadLine() ?? string.Empty;
 
         var customer = new Customer
@@ -160,53 +160,53 @@ public class MenuService
         };
 
         await _customerService.RegisterCustomerAsync(customer);
-        Console.WriteLine("\nThêm khách hàng thành công!");
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nThem khach hang thanh cong!");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewCustomerDetailsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Chi Tiết Khách Hàng ===");
+        Console.WriteLine("=== Chi Tiet Khach Hang ===");
         
-        Console.Write("Nhập ID Khách Hàng: ");
+        Console.Write("Nhap ID Khach Hang: ");
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             var customer = await _customerService.GetCustomerAsync(id);
             if (customer != null)
             {
                 Console.WriteLine($"\nID: {customer.Id}");
-                Console.WriteLine($"Tên: {customer.Name}");
+                Console.WriteLine($"Ten: {customer.Name}");
                 Console.WriteLine($"Email: {customer.Email}");
-                Console.WriteLine($"Số Điện Thoại: {customer.Phone}");
-                Console.WriteLine($"Hạng Thành Viên: {customer.MembershipTier}");
-                Console.WriteLine($"Điểm Tích Lũy: {customer.MembershipPoints}");
+                Console.WriteLine($"So Dien Thoai: {customer.Phone}");
+                Console.WriteLine($"Hang Thanh Vien: {customer.MembershipTier}");
+                Console.WriteLine($"Diem Tich Luy: {customer.MembershipPoints}");
             }
             else
             {
-                Console.WriteLine("Không tìm thấy khách hàng.");
+                Console.WriteLine("Khong tim thay khach hang.");
             }
         }
         else
         {
-            Console.WriteLine("ID không hợp lệ.");
+            Console.WriteLine("ID khong hop le.");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task UpdateCustomerAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Update Customer ===");
+        Console.WriteLine("=== Cap Nhat Khach Hang ===");
         
-        Console.Write("Enter Customer ID: ");
+        Console.Write("Nhap ID Khach Hang: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -214,50 +214,50 @@ public class MenuService
         var customer = await _customerService.GetCustomerAsync(id);
         if (customer == null)
         {
-            Console.WriteLine("Customer not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khach hang khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCurrent Details:");
-        Console.WriteLine($"Name: {customer.Name}");
+        Console.WriteLine($"\nThong Tin Hien Tai:");
+        Console.WriteLine($"Ten: {customer.Name}");
         Console.WriteLine($"Email: {customer.Email}");
-        Console.WriteLine($"Phone: {customer.Phone}");
+        Console.WriteLine($"So Dien Thoai: {customer.Phone}");
 
-        Console.WriteLine("\nEnter new details (press Enter to keep current value):");
+        Console.WriteLine("\nNhap thong tin moi (nhan Enter de giu nguyen gia tri hien tai):");
         
-        Console.Write("New Name: ");
+        Console.Write("Ten Moi: ");
         string name = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(name))
             customer.Name = name;
         
-        Console.Write("New Email: ");
+        Console.Write("Email Moi: ");
         string email = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(email))
             customer.Email = email;
         
-        Console.Write("New Phone: ");
+        Console.Write("So Dien Thoai Moi: ");
         string phone = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(phone))
             customer.Phone = phone;
 
         await _customerService.UpdateCustomerAsync(customer);
-        Console.WriteLine("\nCustomer updated successfully!");
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine("\nCap nhat khach hang thanh cong!");
+        Console.WriteLine("Nhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task DeleteCustomerAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Delete Customer ===");
+        Console.WriteLine("=== Xoa Khach Hang ===");
         
-        Console.Write("Enter Customer ID: ");
+        Console.Write("Nhap ID Khach Hang: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -265,47 +265,47 @@ public class MenuService
         var customer = await _customerService.GetCustomerAsync(id);
         if (customer == null)
         {
-            Console.WriteLine("Customer not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khach hang khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCustomer Details:");
-        Console.WriteLine($"Name: {customer.Name}");
+        Console.WriteLine($"\nThong Tin Khach Hang:");
+        Console.WriteLine($"Ten: {customer.Name}");
         Console.WriteLine($"Email: {customer.Email}");
-        Console.WriteLine($"Phone: {customer.Phone}");
+        Console.WriteLine($"So Dien Thoai: {customer.Phone}");
 
-        Console.Write("\nAre you sure you want to delete this customer? (y/N): ");
+        Console.Write("\nBan co chac chan muon xoa khach hang nay? (y/N): ");
         if (Console.ReadLine()?.ToLower() == "y")
         {
             await _customerService.DeleteCustomerAsync(id);
-            Console.WriteLine("Customer deleted successfully!");
+            Console.WriteLine("Xoa khach hang thanh cong!");
         }
         else
         {
-            Console.WriteLine("Deletion cancelled.");
+            Console.WriteLine("Huy xoa.");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewAllCustomersAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Danh Sách Khách Hàng ===\n");
+        Console.WriteLine("=== Danh Sach Khach Hang ===\n");
         
         var customers = await _customerService.GetAllCustomersAsync();
         if (!customers.Any())
         {
-            Console.WriteLine("Không tìm thấy khách hàng nào.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong tim thay khach hang nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("ID\tTên\tEmail\tSố ĐT\tHạng\tĐiểm");
+        Console.WriteLine("ID\tTen\tEmail\tSo DT\tHang\tDiem");
         Console.WriteLine(new string('-', 70));
         
         foreach (var customer in customers)
@@ -313,7 +313,7 @@ public class MenuService
             Console.WriteLine($"{customer.Id}\t{customer.Name}\t{customer.Email}\t{customer.Phone}\t{customer.MembershipTier}\t{customer.MembershipPoints}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
@@ -323,15 +323,15 @@ public class MenuService
         while (!back)
         {
             Console.Clear();
-            Console.WriteLine("=== Quản Lý Máy Trạm ===");
-            Console.WriteLine("1. Thêm Máy Mới");
-            Console.WriteLine("2. Xem Chi Tiết Máy");
-            Console.WriteLine("3. Cập Nhật Máy");
-            Console.WriteLine("4. Xóa Máy");
-            Console.WriteLine("5. Xem Tất Cả Máy");
-            Console.WriteLine("6. Thay Đổi Trạng Thái Máy");
-            Console.WriteLine("0. Quay Lại Menu Chính");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== Quan Ly May Tram ===");
+            Console.WriteLine("1. Them May Moi");
+            Console.WriteLine("2. Xem Chi Tiet May");
+            Console.WriteLine("3. Cap Nhat May");
+            Console.WriteLine("4. Xoa May");
+            Console.WriteLine("5. Xem Tat Ca May");
+            Console.WriteLine("6. Thay Doi Trang Thai May");
+            Console.WriteLine("0. Quay Lai Menu Chinh");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -361,16 +361,16 @@ public class MenuService
                             back = true;
                             break;
                         default:
-                            Console.WriteLine("Invalid choice. Press any key to continue...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Error occurred in station menu");
-                    Console.WriteLine($"Error: {ex.Message}");
-                    Console.WriteLine("Press any key to continue...");
+                    Log.Error(ex, "Loi xay ra trong menu may tram");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -380,25 +380,25 @@ public class MenuService
     private async Task AddNewStationAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Add New Station ===");
+        Console.WriteLine("=== Them May Moi ===");
         
-        Console.Write("Enter Station Number: ");
+        Console.Write("Nhap So May: ");
         if (!int.TryParse(Console.ReadLine(), out int stationNumber))
         {
-            Console.WriteLine("Invalid station number format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("So may khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.Write("Enter Hardware Specifications: ");
+        Console.Write("Nhap Cau Hinh Phan Cung: ");
         string specs = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Enter Hourly Rate: ");
+        Console.Write("Nhap Gia/Gio: ");
         if (!decimal.TryParse(Console.ReadLine(), out decimal rate))
         {
-            Console.WriteLine("Invalid rate format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Gia khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -412,21 +412,21 @@ public class MenuService
         };
 
         await _stationService.AddStationAsync(station);
-        Console.WriteLine("\nStation added successfully!");
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine("\nThem may thanh cong!");
+        Console.WriteLine("Nhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewStationDetailsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Xem Chi Tiết Máy ===");
+        Console.WriteLine("=== Xem Chi Tiet May ===");
         
-        Console.Write("Enter Station ID: ");
+        Console.Write("Nhap ID May: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("ID không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -435,40 +435,40 @@ public class MenuService
         if (station != null)
         {
             Console.WriteLine($"\nID: {station.Id}");
-            Console.WriteLine($"Số Máy: {station.StationNumber}");
-            Console.WriteLine($"Cấu Hình: {station.HardwareSpecification}");
-            Console.WriteLine($"Trạng Thái: {station.Status}");
-            Console.WriteLine($"Giá/Giờ: ${station.HourlyRate:F2}");
+            Console.WriteLine($"So May: {station.StationNumber}");
+            Console.WriteLine($"Cau Hinh: {station.HardwareSpecification}");
+            Console.WriteLine($"Trang Thai: {station.Status}");
+            Console.WriteLine($"Gia/Gio: ${station.HourlyRate:F2}");
 
             // Show active session if any
             var activeSession = await _sessionService.GetActiveSessionByStationAsync(id);
             if (activeSession != null)
             {
-                Console.WriteLine("\nPhiên Hiện Tại:");
-                Console.WriteLine($"Khách Hàng: {activeSession.Customer.Name}");
-                Console.WriteLine($"Bắt Đầu: {activeSession.StartTime}");
-                Console.WriteLine($"Thời Gian: {(DateTime.UtcNow - activeSession.StartTime).TotalHours:F2} giờ");
+                Console.WriteLine("\nPhien Hien Tai:");
+                Console.WriteLine($"Khach Hang: {activeSession.Customer.Name}");
+                Console.WriteLine($"Bat Dau: {activeSession.StartTime}");
+                Console.WriteLine($"Thoi Gian: {(DateTime.UtcNow - activeSession.StartTime).TotalHours:F2} gio");
             }
         }
         else
         {
-            Console.WriteLine("Không tìm thấy máy.");
+            Console.WriteLine("Khong tim thay may.");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task UpdateStationAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Update Station ===");
+        Console.WriteLine("=== Cap Nhat May ===");
         
-        Console.Write("Enter Station ID: ");
+        Console.Write("Nhap ID May: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -476,45 +476,45 @@ public class MenuService
         var station = await _stationService.GetStationAsync(id);
         if (station == null)
         {
-            Console.WriteLine("Station not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("May khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCurrent Details:");
-        Console.WriteLine($"Station Number: {station.StationNumber}");
-        Console.WriteLine($"Hardware Specs: {station.HardwareSpecification}");
-        Console.WriteLine($"Hourly Rate: ${station.HourlyRate:F2}");
+        Console.WriteLine($"\nThong Tin Hien Tai:");
+        Console.WriteLine($"So May: {station.StationNumber}");
+        Console.WriteLine($"Cau Hinh: {station.HardwareSpecification}");
+        Console.WriteLine($"Gia/Gio: ${station.HourlyRate:F2}");
 
-        Console.WriteLine("\nEnter new details (press Enter to keep current value):");
+        Console.WriteLine("\nNhap thong tin moi (nhan Enter de giu nguyen gia tri hien tai):");
         
-        Console.Write("New Hardware Specifications: ");
+        Console.Write("Cau Hinh Moi: ");
         string specs = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(specs))
             station.HardwareSpecification = specs;
 
-        Console.Write("New Hourly Rate: ");
+        Console.Write("Gia/Gio Moi: ");
         string rateStr = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(rateStr) && decimal.TryParse(rateStr, out decimal rate))
             station.HourlyRate = rate;
 
         await _stationService.UpdateStationAsync(station);
-        Console.WriteLine("\nStation updated successfully!");
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine("\nCap nhat may thanh cong!");
+        Console.WriteLine("Nhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task DeleteStationAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Delete Station ===");
+        Console.WriteLine("=== Xoa May ===");
         
-        Console.Write("Enter Station ID: ");
+        Console.Write("Nhap ID May: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -522,8 +522,8 @@ public class MenuService
         var station = await _stationService.GetStationAsync(id);
         if (station == null)
         {
-            Console.WriteLine("Station not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("May khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -531,47 +531,47 @@ public class MenuService
         var activeSession = await _sessionService.GetActiveSessionByStationAsync(id);
         if (activeSession != null)
         {
-            Console.WriteLine("Cannot delete station with active session.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khong the xoa may dang co phien hoat dong.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nStation Details:");
-        Console.WriteLine($"Station Number: {station.StationNumber}");
-        Console.WriteLine($"Hardware Specs: {station.HardwareSpecification}");
-        Console.WriteLine($"Status: {station.Status}");
+        Console.WriteLine($"\nThong Tin May:");
+        Console.WriteLine($"So May: {station.StationNumber}");
+        Console.WriteLine($"Cau Hinh: {station.HardwareSpecification}");
+        Console.WriteLine($"Trang Thai: {station.Status}");
 
-        Console.Write("\nAre you sure you want to delete this station? (y/N): ");
+        Console.Write("\nBan co chac chan muon xoa may nay? (y/N): ");
         if (Console.ReadLine()?.ToLower() == "y")
         {
             await _stationService.DeleteStationAsync(id);
-            Console.WriteLine("Station deleted successfully!");
+            Console.WriteLine("Xoa may thanh cong!");
         }
         else
         {
-            Console.WriteLine("Deletion cancelled.");
+            Console.WriteLine("Huy xoa.");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewAllStationsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== All Stations ===\n");
+        Console.WriteLine("=== Tat Ca May ===\n");
         
         var stations = await _stationService.GetAllStationsAsync();
         if (!stations.Any())
         {
-            Console.WriteLine("No stations found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khong tim thay may nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("ID\tNumber\tStatus\tRate\tSpecs");
+        Console.WriteLine("ID\tSo May\tTrang Thai\tGia/Gio\tCau Hinh");
         Console.WriteLine(new string('-', 70));
         
         foreach (var station in stations)
@@ -579,20 +579,20 @@ public class MenuService
             Console.WriteLine($"{station.Id}\t{station.StationNumber}\t{station.Status}\t${station.HourlyRate:F2}\t{station.HardwareSpecification}");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ChangeStationStatusAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Change Station Status ===");
+        Console.WriteLine("=== Thay Doi Trang Thai May ===");
         
-        Console.Write("Enter Station ID: ");
+        Console.Write("Nhap ID May: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -600,19 +600,19 @@ public class MenuService
         var station = await _stationService.GetStationAsync(id);
         if (station == null)
         {
-            Console.WriteLine("Station not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("May khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCurrent Status: {station.Status}");
-        Console.WriteLine("\nAvailable Statuses:");
+        Console.WriteLine($"\nTrang Thai Hien Tai: {station.Status}");
+        Console.WriteLine("\nTrang Thai Co San:");
         Console.WriteLine("1. Free");
         Console.WriteLine("2. Occupied");
         Console.WriteLine("3. Maintenance");
         
-        Console.Write("\nEnter new status (1-3): ");
+        Console.Write("\nNhap trang thai moi (1-3): ");
         if (int.TryParse(Console.ReadLine(), out int statusChoice))
         {
             var newStatus = statusChoice switch
@@ -626,19 +626,19 @@ public class MenuService
             if (newStatus != station.Status)
             {
                 await _stationService.UpdateStationStatusAsync(id, newStatus);
-                Console.WriteLine("Status updated successfully!");
+                Console.WriteLine("Cap nhat trang thai thanh cong!");
             }
             else
             {
-                Console.WriteLine("Invalid status choice.");
+                Console.WriteLine("Lua chon trang thai khong hop le.");
             }
         }
         else
         {
-            Console.WriteLine("Invalid input.");
+            Console.WriteLine("Nhap khong hop le.");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
@@ -648,14 +648,14 @@ public class MenuService
         while (!back)
         {
             Console.Clear();
-            Console.WriteLine("=== Quản Lý Phiên ===");
-            Console.WriteLine("1. Bắt Đầu Phiên Mới");
-            Console.WriteLine("2. Kết Thúc Phiên");
-            Console.WriteLine("3. Xem Phiên Đang Hoạt Động");
-            Console.WriteLine("4. Xem Chi Tiết Phiên");
-            Console.WriteLine("5. Thêm Dịch Vụ Vào Phiên");
-            Console.WriteLine("0. Quay Lại Menu Chính");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== Quan Ly Phien ===");
+            Console.WriteLine("1. Bat Dau Phien Moi");
+            Console.WriteLine("2. Ket Thuc Phien");
+            Console.WriteLine("3. Xem Phien Dang Hoat Dong");
+            Console.WriteLine("4. Xem Chi Tiet Phien");
+            Console.WriteLine("5. Them Dich Vu Vao Phien");
+            Console.WriteLine("0. Quay Lai Menu Chinh");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -682,16 +682,16 @@ public class MenuService
                             back = true;
                             break;
                         default:
-                            Console.WriteLine("Invalid choice. Press any key to continue...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Error occurred in session menu");
-                    Console.WriteLine($"Error: {ex.Message}");
-                    Console.WriteLine("Press any key to continue...");
+                    Log.Error(ex, "Loi xay ra trong menu phien");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -701,13 +701,13 @@ public class MenuService
     private async Task StartNewSessionAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Start New Session ===");
+        Console.WriteLine("=== Bat Dau Phien Moi ===");
         
-        Console.Write("Enter Customer ID: ");
+        Console.Write("Nhap ID Khach Hang: ");
         if (!int.TryParse(Console.ReadLine(), out int customerId))
         {
-            Console.WriteLine("Invalid customer ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khach hang khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -715,8 +715,8 @@ public class MenuService
         var customer = await _customerService.GetCustomerAsync(customerId);
         if (customer == null)
         {
-            Console.WriteLine("Customer not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khach hang khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -724,8 +724,8 @@ public class MenuService
         var activeSession = await _sessionService.GetActiveSessionByCustomerAsync(customerId);
         if (activeSession != null)
         {
-            Console.WriteLine("Customer already has an active session.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khach hang da co phien dang hoat dong.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -734,55 +734,55 @@ public class MenuService
         var stations = await _stationService.GetAvailableStationsAsync();
         if (!stations.Any())
         {
-            Console.WriteLine("No stations available.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khong co may nao san sang.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("\nAvailable Stations:");
-        Console.WriteLine("ID\tNumber\tRate\tSpecs");
+        Console.WriteLine("\nMay San Sang:");
+        Console.WriteLine("ID\tSo May\tGia/Gio\tCau Hinh");
         Console.WriteLine(new string('-', 50));
         foreach (var station in stations)
         {
             Console.WriteLine($"{station.Id}\t{station.StationNumber}\t${station.HourlyRate:F2}\t{station.HardwareSpecification}");
         }
 
-        Console.Write("\nEnter Station ID: ");
+        Console.Write("\nNhap ID May: ");
         if (!int.TryParse(Console.ReadLine(), out int stationId))
         {
-            Console.WriteLine("Invalid station ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID may khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
         if (!stations.Any(s => s.Id == stationId))
         {
-            Console.WriteLine("Invalid station selection.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Lua chon may khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
         var session = await _sessionService.StartSessionAsync(customerId, stationId);
-        Console.WriteLine("\nSession started successfully!");
-        Console.WriteLine($"Session ID: {session.Id}");
-        Console.WriteLine($"Start Time: {session.StartTime}");
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nBat dau phien thanh cong!");
+        Console.WriteLine($"ID Phien: {session.Id}");
+        Console.WriteLine($"Bat Dau: {session.StartTime}");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task EndSessionAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Kết Thúc Phiên ===");
+        Console.WriteLine("=== Ket Thuc Phien ===");
         
-        Console.Write("Enter Session ID: ");
+        Console.Write("Nhap ID Phien: ");
         if (!int.TryParse(Console.ReadLine(), out int sessionId))
         {
-            Console.WriteLine("ID phiên không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID phien khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -790,34 +790,34 @@ public class MenuService
         try
         {
             var session = await _sessionService.EndSessionAsync(sessionId);
-            Console.WriteLine("\nKết thúc phiên thành công!");
-            Console.WriteLine($"Thời Gian: {(session.EndTime!.Value - session.StartTime).TotalHours:F2} hours");
-            Console.WriteLine($"Tổng Chi Phí: ${session.TotalCost:F2}");
+            Console.WriteLine("\nKet thuc phien thanh cong!");
+            Console.WriteLine($"Thoi Gian: {(session.EndTime!.Value - session.StartTime).TotalHours:F2} gio");
+            Console.WriteLine($"Tong Chi Phi: ${session.TotalCost:F2}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Lỗi: {ex.Message}");
+            Console.WriteLine($"Loi: {ex.Message}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewActiveSessionsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Phiên Đang Hoạt Động ===\n");
+        Console.WriteLine("=== Phien Dang Hoat Dong ===\n");
         
         var sessions = await _sessionService.GetActiveSessionsAsync();
         if (!sessions.Any())
         {
-            Console.WriteLine("Không có phiên đang hoạt động.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong co phien dang hoat dong.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("ID\tKhách Hàng\tMáy Số\tBắt Đầu\tThời Gian (giờ)");
+        Console.WriteLine("ID\tKhach Hang\tMay So\tBat Dau\tThoi Gian (gio)");
         Console.WriteLine(new string('-', 70));
         
         foreach (var session in sessions)
@@ -826,20 +826,20 @@ public class MenuService
             Console.WriteLine($"{session.Id}\t{session.Customer.Name}\t{session.Station.StationNumber}\t{session.StartTime:HH:mm:ss}\t{duration:F2}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewSessionDetailsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Chi Tiết Phiên ===");
+        Console.WriteLine("=== Chi Tiet Phien ===");
         
-        Console.Write("Nhập ID Phiên: ");
+        Console.Write("Nhap ID Phien: ");
         if (!int.TryParse(Console.ReadLine(), out int sessionId))
         {
-            Console.WriteLine("ID không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -847,23 +847,23 @@ public class MenuService
         var session = await _sessionService.GetActiveSessionByCustomerAsync(sessionId);
         if (session != null)
         {
-            Console.WriteLine($"\nID Phiên: {session.Id}");
-            Console.WriteLine($"Khách Hàng: {session.Customer.Name}");
-            Console.WriteLine($"Máy Số: {session.Station.StationNumber}");
-            Console.WriteLine($"Bắt Đầu: {session.StartTime}");
+            Console.WriteLine($"\nID Phien: {session.Id}");
+            Console.WriteLine($"Khach Hang: {session.Customer.Name}");
+            Console.WriteLine($"May So: {session.Station.StationNumber}");
+            Console.WriteLine($"Bat Dau: {session.StartTime}");
             
             var duration = (DateTime.UtcNow - session.StartTime).TotalHours;
-            Console.WriteLine($"Thời Gian: {duration:F2} giờ");
+            Console.WriteLine($"Thoi Gian: {duration:F2} gio");
             
             var cost = await _sessionService.CalculateSessionCostAsync(sessionId);
-            Console.WriteLine($"Tổng Chi Phí: ${cost:F2}");
+            Console.WriteLine($"Tong Chi Phi: ${cost:F2}");
 
             // Show ordered services
             var orders = await _serviceOrderManagementService.GetSessionOrdersAsync(sessionId);
             if (orders.Any())
             {
-                Console.WriteLine("\nDịch Vụ Đã Đặt:");
-                Console.WriteLine("Tên\tSố Lượng\tGiá\tTrạng Thái");
+                Console.WriteLine("\nDich Vu Da Dat:");
+                Console.WriteLine("Ten\tSo Luong\tGia\tTrang Thai");
                 Console.WriteLine(new string('-', 50));
                 foreach (var order in orders)
                 {
@@ -873,23 +873,23 @@ public class MenuService
         }
         else
         {
-            Console.WriteLine("Không tìm thấy phiên hoặc phiên đã kết thúc.");
+            Console.WriteLine("Khong tim thay phien hoac phien da ket thuc.");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task AddServiceToSessionAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Thêm Dịch Vụ Vào Phiên ===");
+        Console.WriteLine("=== Them Dich Vu Vao Phien ===");
         
-        Console.Write("Enter Session ID: ");
+        Console.Write("Nhap ID Phien: ");
         if (!int.TryParse(Console.ReadLine(), out int sessionId))
         {
-            Console.WriteLine("ID phiên không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID phien khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -897,8 +897,8 @@ public class MenuService
         var session = await _sessionService.GetActiveSessionByCustomerAsync(sessionId);
         if (session == null)
         {
-            Console.WriteLine("Không tìm thấy phiên hoặc phiên đã kết thúc.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong tim thay phien hoac phien da ket thuc.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -907,34 +907,34 @@ public class MenuService
         var services = await _serviceManagementService.GetAllServicesAsync();
         if (!services.Any())
         {
-            Console.WriteLine("Không có dịch vụ nào.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong co dich vu nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("\nDịch Vụ Hiện Có:");
-        Console.WriteLine("ID\tTên\tGiá\tTồn Kho");
+        Console.WriteLine("\nDich Vu Hien Co:");
+        Console.WriteLine("ID\tTen\tGia\tTon Kho");
         Console.WriteLine(new string('-', 50));
         foreach (var service in services)
         {
             Console.WriteLine($"{service.Id}\t{service.Name}\t${service.Price:F2}\t{service.CurrentStock}");
         }
 
-        Console.Write("\nNhập ID Dịch Vụ: ");
+        Console.Write("\nNhap ID Dich Vu: ");
         if (!int.TryParse(Console.ReadLine(), out int serviceId))
         {
-            Console.WriteLine("ID dịch vụ không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID dich vu khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.Write("Nhập Số Lượng: ");
+        Console.Write("Nhap So Luong: ");
         if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity <= 0)
         {
-            Console.WriteLine("Số lượng không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("So luong khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -942,14 +942,14 @@ public class MenuService
         try
         {
             await _serviceOrderManagementService.CreateOrderAsync(sessionId, serviceId, quantity);
-            Console.WriteLine("Thêm dịch vụ vào phiên thành công!");
+            Console.WriteLine("Them dich vu vao phien thanh cong!");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Lỗi: {ex.Message}");
+            Console.WriteLine($"Loi: {ex.Message}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
@@ -959,16 +959,16 @@ public class MenuService
         while (!back)
         {
             Console.Clear();
-            Console.WriteLine("=== Quản Lý Dịch Vụ ===");
-            Console.WriteLine("1. Thêm Dịch Vụ Mới");
-            Console.WriteLine("2. Xem Chi Tiết Dịch Vụ");
-            Console.WriteLine("3. Cập Nhật Dịch Vụ");
-            Console.WriteLine("4. Xóa Dịch Vụ");
-            Console.WriteLine("5. Xem Tất Cả Dịch Vụ");
-            Console.WriteLine("6. Cập Nhật Tồn Kho");
-            Console.WriteLine("7. Xem Dịch Vụ Sắp Hết");
-            Console.WriteLine("0. Quay Lại Menu Chính");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== Quan Ly Dich Vu ===");
+            Console.WriteLine("1. Them Dich Vu Moi");
+            Console.WriteLine("2. Xem Chi Tiet Dich Vu");
+            Console.WriteLine("3. Cap Nhat Dich Vu");
+            Console.WriteLine("4. Xoa Dich Vu");
+            Console.WriteLine("5. Xem Tat Ca Dich Vu");
+            Console.WriteLine("6. Cap Nhat Ton Kho");
+            Console.WriteLine("7. Xem Dich Vu Sap Het");
+            Console.WriteLine("0. Quay Lai Menu Chinh");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -1001,16 +1001,16 @@ public class MenuService
                             back = true;
                             break;
                         default:
-                            Console.WriteLine("Invalid choice. Press any key to continue...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Error occurred in service menu");
-                    Console.WriteLine($"Error: {ex.Message}");
-                    Console.WriteLine("Press any key to continue...");
+                    Log.Error(ex, "Loi xay ra trong menu dich vu");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -1020,47 +1020,47 @@ public class MenuService
     private async Task AddNewServiceAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Thêm Dịch Vụ Mới ===");
+        Console.WriteLine("=== Them Dich Vu Moi ===");
         
-        Console.Write("Nhập Tên Dịch Vụ: ");
+        Console.Write("Nhap Ten Dich Vu: ");
         string name = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Nhập Mô Tả: ");
+        Console.Write("Nhap Mo Ta: ");
         string description = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Nhập Giá (USD): ");
+        Console.Write("Nhap Gia (USD): ");
         if (!decimal.TryParse(Console.ReadLine(), out decimal price))
         {
-            Console.WriteLine("Giá không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Gia khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.Write("Nhập Số Lượng Ban Đầu: ");
+        Console.Write("Nhap So Luong Ban Dau: ");
         if (!int.TryParse(Console.ReadLine(), out int stock))
         {
-            Console.WriteLine("Số lượng không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("So luong khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.Write("Nhập Số Lượng Tối Thiểu: ");
+        Console.Write("Nhap So Luong Toi Thieu: ");
         if (!int.TryParse(Console.ReadLine(), out int minStock))
         {
-            Console.WriteLine("Số lượng tối thiểu không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("So luong toi thieu khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("\nChọn Loại Dịch Vụ:");
-        Console.WriteLine("1. Thức Ăn");
-        Console.WriteLine("2. Đồ Uống");
-        Console.WriteLine("3. Thiết Bị");
-        Console.WriteLine("4. Khác");
-        Console.Write("Nhập lựa chọn (1-4): ");
+        Console.WriteLine("\nChon Loai Dich Vu:");
+        Console.WriteLine("1. Thuc An");
+        Console.WriteLine("2. Do Uong");
+        Console.WriteLine("3. Thiet Bi");
+        Console.WriteLine("4. Khac");
+        Console.Write("Nhap lua chon (1-4): ");
 
         ServiceCategory category = ServiceCategory.Other;
         if (int.TryParse(Console.ReadLine(), out int categoryChoice))
@@ -1085,21 +1085,21 @@ public class MenuService
         };
 
         await _serviceManagementService.AddServiceAsync(service);
-        Console.WriteLine("\nThêm dịch vụ thành công!");
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nThem dich vu thanh cong!");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewServiceDetailsAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Chi Tiết Dịch Vụ ===");
+        Console.WriteLine("=== Chi Tiet Dich Vu ===");
         
-        Console.Write("Nhập ID Dịch Vụ: ");
+        Console.Write("Nhap ID Dich Vu: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("ID không hợp lệ.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1108,32 +1108,32 @@ public class MenuService
         if (service != null)
         {
             Console.WriteLine($"\nID: {service.Id}");
-            Console.WriteLine($"Tên: {service.Name}");
-            Console.WriteLine($"Mô Tả: {service.Description}");
-            Console.WriteLine($"Loại: {service.Category}");
-            Console.WriteLine($"Giá: ${service.Price:F2}");
-            Console.WriteLine($"Tồn Kho: {service.CurrentStock}");
-            Console.WriteLine($"Tồn Kho Tối Thiểu: {service.MinimumStock}");
+            Console.WriteLine($"Ten: {service.Name}");
+            Console.WriteLine($"Mo Ta: {service.Description}");
+            Console.WriteLine($"Loai: {service.Category}");
+            Console.WriteLine($"Gia: ${service.Price:F2}");
+            Console.WriteLine($"Ton Kho: {service.CurrentStock}");
+            Console.WriteLine($"Ton Kho Toi Thieu: {service.MinimumStock}");
         }
         else
         {
-            Console.WriteLine("Không tìm thấy dịch vụ.");
+            Console.WriteLine("Khong tim thay dich vu.");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task UpdateServiceAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Update Service ===");
+        Console.WriteLine("=== Cap Nhat Dich Vu ===");
         
-        Console.Write("Enter Service ID: ");
+        Console.Write("Nhap ID Dich Vu: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1141,56 +1141,56 @@ public class MenuService
         var service = await _serviceManagementService.GetServiceAsync(id);
         if (service == null)
         {
-            Console.WriteLine("Service not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Dich vu khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCurrent Details:");
-        Console.WriteLine($"Name: {service.Name}");
-        Console.WriteLine($"Description: {service.Description}");
-        Console.WriteLine($"Price: ${service.Price:F2}");
-        Console.WriteLine($"Minimum Stock: {service.MinimumStock}");
+        Console.WriteLine($"\nThong Tin Hien Tai:");
+        Console.WriteLine($"Ten: {service.Name}");
+        Console.WriteLine($"Mo Ta: {service.Description}");
+        Console.WriteLine($"Gia: ${service.Price:F2}");
+        Console.WriteLine($"Ton Kho Toi Thieu: {service.MinimumStock}");
 
-        Console.WriteLine("\nEnter new details (press Enter to keep current value):");
+        Console.WriteLine("\nNhap thong tin moi (nhan Enter de giu nguyen gia tri hien tai):");
         
-        Console.Write("New Name: ");
+        Console.Write("Ten Moi: ");
         string name = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(name))
             service.Name = name;
 
-        Console.Write("New Description: ");
+        Console.Write("Mo Ta Moi: ");
         string description = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(description))
             service.Description = description;
 
-        Console.Write("New Price: ");
+        Console.Write("Gia Moi: ");
         string priceStr = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(priceStr) && decimal.TryParse(priceStr, out decimal price))
             service.Price = price;
 
-        Console.Write("New Minimum Stock: ");
+        Console.Write("Ton Kho Toi Thieu Moi: ");
         string minStockStr = Console.ReadLine() ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(minStockStr) && int.TryParse(minStockStr, out int minStock))
             service.MinimumStock = minStock;
 
         await _serviceManagementService.UpdateServiceAsync(service);
-        Console.WriteLine("\nService updated successfully!");
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine("\nCap nhat dich vu thanh cong!");
+        Console.WriteLine("Nhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task DeleteServiceAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Delete Service ===");
+        Console.WriteLine("=== Xoa Dich Vu ===");
         
-        Console.Write("Enter Service ID: ");
+        Console.Write("Nhap ID Dich Vu: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1198,48 +1198,48 @@ public class MenuService
         var service = await _serviceManagementService.GetServiceAsync(id);
         if (service == null)
         {
-            Console.WriteLine("Service not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Dich vu khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nService Details:");
-        Console.WriteLine($"Name: {service.Name}");
-        Console.WriteLine($"Description: {service.Description}");
-        Console.WriteLine($"Price: ${service.Price:F2}");
-        Console.WriteLine($"Current Stock: {service.CurrentStock}");
+        Console.WriteLine($"\nThong Tin Dich Vu:");
+        Console.WriteLine($"Ten: {service.Name}");
+        Console.WriteLine($"Mo Ta: {service.Description}");
+        Console.WriteLine($"Gia: ${service.Price:F2}");
+        Console.WriteLine($"Ton Kho: {service.CurrentStock}");
 
-        Console.Write("\nAre you sure you want to delete this service? (y/N): ");
+        Console.Write("\nBan co chac chan muon xoa dich vu nay? (y/N): ");
         if (Console.ReadLine()?.ToLower() == "y")
         {
             await _serviceManagementService.DeleteServiceAsync(id);
-            Console.WriteLine("Service deleted successfully!");
+            Console.WriteLine("Xoa dich vu thanh cong!");
         }
         else
         {
-            Console.WriteLine("Deletion cancelled.");
+            Console.WriteLine("Huy xoa.");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewAllServicesAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Tất Cả Dịch Vụ ===\n");
+        Console.WriteLine("=== Tat Ca Dich Vu ===\n");
         
         var services = await _serviceManagementService.GetAllServicesAsync();
         if (!services.Any())
         {
-            Console.WriteLine("Không tìm thấy dịch vụ nào.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");;
+            Console.WriteLine("Khong tim thay dich vu nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");;
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("ID\tTên\tLoại\tGiá (USD)\tTồn Kho\tTồn Tối Thiểu");
+        Console.WriteLine("ID\tTen\tLoai\tGia (USD)\tTon Kho\tTon Toi Thieu");
         Console.WriteLine(new string('-', 90));
         
         foreach (var service in services)
@@ -1247,20 +1247,20 @@ public class MenuService
             Console.WriteLine($"{service.Id}\t{service.Name}\t{service.Category}\t${service.Price:F2}\t{service.CurrentStock}\t{service.MinimumStock}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task UpdateServiceStockAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Update Service Stock ===");
+        Console.WriteLine("=== Cap Nhat Ton Kho Dich Vu ===");
         
-        Console.Write("Enter Service ID: ");
+        Console.Write("Nhap ID Dich Vu: ");
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
-            Console.WriteLine("Invalid ID format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("ID khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1268,18 +1268,18 @@ public class MenuService
         var service = await _serviceManagementService.GetServiceAsync(id);
         if (service == null)
         {
-            Console.WriteLine("Service not found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Dich vu khong ton tai.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine($"\nCurrent Stock: {service.CurrentStock}");
-        Console.Write("Enter stock change (+/- quantity): ");
+        Console.WriteLine($"\nTon Kho Hien Tai: {service.CurrentStock}");
+        Console.Write("Nhap thay doi ton kho (+/- so luong): ");
         if (!int.TryParse(Console.ReadLine(), out int change))
         {
-            Console.WriteLine("Invalid quantity format.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("So luong khong hop le.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1287,32 +1287,32 @@ public class MenuService
         try
         {
             await _serviceManagementService.UpdateStockAsync(id, change);
-            Console.WriteLine("Stock updated successfully!");
+            Console.WriteLine("Cap nhat ton kho thanh cong!");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine($"Loi: {ex.Message}");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ViewLowStockServicesAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Low Stock Services ===\n");
+        Console.WriteLine("=== Dich Vu Sap Het ===\n");
         
         var services = await _serviceManagementService.GetLowStockServicesAsync();
         if (!services.Any())
         {
-            Console.WriteLine("No services are low on stock.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khong co dich vu nao sap het.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("ID\tName\tCategory\tCurrent Stock\tMinimum Stock");
+        Console.WriteLine("ID\tTen\tLoai\tTon Kho\tTon Toi Thieu");
         Console.WriteLine(new string('-', 70));
         
         foreach (var service in services)
@@ -1320,7 +1320,7 @@ public class MenuService
             Console.WriteLine($"{service.Id}\t{service.Name}\t{service.Category}\t{service.CurrentStock}\t{service.MinimumStock}");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
@@ -1330,14 +1330,14 @@ public class MenuService
         while (!back)
         {
             Console.Clear();
-            Console.WriteLine("=== Báo Cáo ===");
-            Console.WriteLine("1. Báo Cáo Phiên Trong Ngày");
-            Console.WriteLine("2. Báo Cáo Doanh Thu Ngày");
-            Console.WriteLine("3. Báo Cáo Sử Dụng Máy");
-            Console.WriteLine("4. Báo Cáo Dịch Vụ Phổ Biến");
-            Console.WriteLine("5. Báo Cáo Hoạt Động Khách Hàng");
-            Console.WriteLine("0. Quay Lại Menu Chính");
-            Console.Write("\nNhập lựa chọn của bạn: ");
+            Console.WriteLine("=== Bao Cao ===");
+            Console.WriteLine("1. Bao Cao Phien Trong Ngay");
+            Console.WriteLine("2. Bao Cao Doanh Thu Ngay");
+            Console.WriteLine("3. Bao Cao Su Dung May");
+            Console.WriteLine("4. Bao Cao Dich Vu Pho Bien");
+            Console.WriteLine("5. Bao Cao Hoat Dong Khach Hang");
+            Console.WriteLine("0. Quay Lai Menu Chinh");
+            Console.Write("\nNhap lua chon cua ban: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
@@ -1364,16 +1364,16 @@ public class MenuService
                             back = true;
                             break;
                         default:
-                            Console.WriteLine("Invalid choice. Press any key to continue...");
+                            Console.WriteLine("Lua chon khong hop le. Nhan phim bat ky de tiep tuc...");
                             Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Error occurred in reports menu");
-                    Console.WriteLine($"Error: {ex.Message}");
-                    Console.WriteLine("Press any key to continue...");
+                    Log.Error(ex, "Loi xay ra trong menu bao cao");
+                    Console.WriteLine($"Loi: {ex.Message}");
+                    Console.WriteLine("Nhan phim bat ky de tiep tuc...");
                     Console.ReadKey();
                 }
             }
@@ -1383,7 +1383,7 @@ public class MenuService
     private async Task ShowDailySessionReportAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Báo Cáo Phiên Trong Ngày ===\n");
+        Console.WriteLine("=== Bao Cao Phien Trong Ngay ===\n");
 
         var today = DateTime.Today;
         var tomorrow = today.AddDays(1);
@@ -1391,8 +1391,8 @@ public class MenuService
 
         if (!sessions.Any())
         {
-            Console.WriteLine("Không có phiên nào trong ngày hôm nay.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong co phien nao trong ngay hom nay.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1404,21 +1404,21 @@ public class MenuService
         var avgDuration = sessions.Where(s => s.EndTime.HasValue)
             .Average(s => (s.EndTime!.Value - s.StartTime).TotalHours);
 
-        Console.WriteLine($"Ngày: {today:d}");
-        Console.WriteLine($"Tổng Số Phiên: {totalSessions}");
-        Console.WriteLine($"Phiên Đã Kết Thúc: {completedSessions}");
-        Console.WriteLine($"Phiên Đang Hoạt Động: {activeSessions}");
-        Console.WriteLine($"Tổng Doanh Thu: ${totalRevenue:F2}");
-        Console.WriteLine($"Thời Gian Trung Bình: {avgDuration:F2} giờ");
+        Console.WriteLine($"Ngay: {today:d}");
+        Console.WriteLine($"Tong So Phien: {totalSessions}");
+        Console.WriteLine($"Phien Da Ket Thuc: {completedSessions}");
+        Console.WriteLine($"Phien Dang Hoat Dong: {activeSessions}");
+        Console.WriteLine($"Tong Doanh Thu: ${totalRevenue:F2}");
+        Console.WriteLine($"Thoi Gian Trung Binh: {avgDuration:F2} gio");
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ShowDailyRevenueReportAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Báo Cáo Doanh Thu Ngày ===\n");
+        Console.WriteLine("=== Bao Cao Doanh Thu Ngay ===\n");
 
         var today = DateTime.Today;
         var tomorrow = today.AddDays(1);
@@ -1426,8 +1426,8 @@ public class MenuService
 
         if (!sessions.Any())
         {
-            Console.WriteLine("Không có doanh thu trong ngày hôm nay.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong co doanh thu trong ngay hom nay.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
@@ -1440,12 +1440,12 @@ public class MenuService
         var serviceRevenue = orders.Sum(o => o.TotalPrice);
         var totalRevenue = sessionRevenue + serviceRevenue;
 
-        Console.WriteLine($"Ngày: {today:d}");
-        Console.WriteLine($"Doanh Thu Phiên Chơi Game: ${sessionRevenue:F2}");
-        Console.WriteLine($"Doanh Thu Dịch Vụ: ${serviceRevenue:F2}");
-        Console.WriteLine($"Tổng Doanh Thu: ${totalRevenue:F2}");
+        Console.WriteLine($"Ngay: {today:d}");
+        Console.WriteLine($"Doanh Thu Phien Choi Game: ${sessionRevenue:F2}");
+        Console.WriteLine($"Doanh Thu Dich Vu: ${serviceRevenue:F2}");
+        Console.WriteLine($"Tong Doanh Thu: ${totalRevenue:F2}");
 
-        Console.WriteLine("\nDoanh Thu Theo Loại Dịch Vụ:");
+        Console.WriteLine("\nDoanh Thu Theo Loai Dich Vu:");
         var categoryRevenue = orders
             .GroupBy(o => o.Service.Category)
             .Select(g => new { Category = g.Key, Revenue = g.Sum(o => o.TotalPrice) });
@@ -1455,26 +1455,26 @@ public class MenuService
             Console.WriteLine($"{category.Category}: ${category.Revenue:F2}");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ShowStationUsageReportAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Station Usage Report ===\n");
+        Console.WriteLine("=== Bao Cao Su Dung May ===\n");
 
         var stations = await _stationService.GetAllStationsAsync();
         if (!stations.Any())
         {
-            Console.WriteLine("No stations found.");
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("Khong tim thay may nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("Station Usage Summary:");
-        Console.WriteLine("Number\tStatus\tTotal Sessions\tTotal Hours\tRevenue");
+        Console.WriteLine("Tong Ket Su Dung May:");
+        Console.WriteLine("So May\tTrang Thai\tTong Phien\tTong Gio\tDoanh Thu");
         Console.WriteLine(new string('-', 70));
 
         foreach (var station in stations)
@@ -1493,32 +1493,32 @@ public class MenuService
         var occupiedStations = stations.Count(s => s.Status == StationStatus.Occupied);
         var maintenanceStations = stations.Count(s => s.Status == StationStatus.Maintenance);
 
-        Console.WriteLine("\nCurrent Status Summary:");
-        Console.WriteLine($"Total Stations: {totalStations}");
-        Console.WriteLine($"Available: {availableStations}");
-        Console.WriteLine($"Occupied: {occupiedStations}");
-        Console.WriteLine($"In Maintenance: {maintenanceStations}");
+        Console.WriteLine("\nTong Ket Trang Thai Hien Tai:");
+        Console.WriteLine($"Tong So May: {totalStations}");
+        Console.WriteLine($"San Sang: {availableStations}");
+        Console.WriteLine($"Dang Su Dung: {occupiedStations}");
+        Console.WriteLine($"Bao Tri: {maintenanceStations}");
 
-        Console.WriteLine("\nPress any key to continue...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ShowPopularServicesReportAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Báo Cáo Dịch Vụ Phổ Biến ===\n");
+        Console.WriteLine("=== Bao Cao Dich Vu Pho Bien ===\n");
 
         var services = await _serviceManagementService.GetAllServicesAsync();
         if (!services.Any())
         {
-            Console.WriteLine("Không tìm thấy dịch vụ nào.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong tim thay dich vu nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("Dịch Vụ Phổ Biến Nhất:");
-        Console.WriteLine("Tên\tLoại\tSố Đơn\tSố Lượng Đã Bán\tDoanh Thu (USD)");
+        Console.WriteLine("Dich Vu Pho Bien Nhat:");
+        Console.WriteLine("Ten\tLoai\tSo Don\tSo Luong Da Ban\tDoanh Thu (USD)");
         Console.WriteLine(new string('-', 90));
 
         foreach (var service in services)
@@ -1535,33 +1535,33 @@ public class MenuService
         var lowStockServices = await _serviceManagementService.GetLowStockServicesAsync();
         if (lowStockServices.Any())
         {
-            Console.WriteLine("\nCảnh Báo Tồn Kho Thấp:");
+            Console.WriteLine("\nCanh Bao Ton Kho Thap:");
             foreach (var service in lowStockServices)
             {
-                Console.WriteLine($"{service.Name}: còn {service.CurrentStock} (Tối thiểu: {service.MinimumStock})");
+                Console.WriteLine($"{service.Name}: con {service.CurrentStock} (Toi thieu: {service.MinimumStock})");
             }
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 
     private async Task ShowCustomerActivityReportAsync()
     {
         Console.Clear();
-        Console.WriteLine("=== Báo Cáo Hoạt Động Khách Hàng ===\n");
+        Console.WriteLine("=== Bao Cao Hoat Dong Khach Hang ===\n");
 
         var customers = await _customerService.GetAllCustomersAsync();
         if (!customers.Any())
         {
-            Console.WriteLine("Không tìm thấy khách hàng nào.");
-            Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+            Console.WriteLine("Khong tim thay khach hang nao.");
+            Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
             Console.ReadKey();
             return;
         }
 
-        Console.WriteLine("Tổng Kết Hoạt Động Khách Hàng:");
-        Console.WriteLine("Tên\tHạng\tTổng Phiên\tTổng Giờ\tTổng Chi (USD)");
+        Console.WriteLine("Tong Ket Hoat Dong Khach Hang:");
+        Console.WriteLine("Ten\tHang\tTong Phien\tTong Gio\tTong Chi (USD)");
         Console.WriteLine(new string('-', 100));
 
         foreach (var customer in customers)
@@ -1579,13 +1579,13 @@ public class MenuService
             .Select(g => new { Tier = g.Key, Count = g.Count() })
             .OrderBy(x => x.Tier);
 
-        Console.WriteLine("\nPhân Bố Hạng Thành Viên:");
+        Console.WriteLine("\nPhan Bo Hang Thanh Vien:");
         foreach (var stat in membershipStats)
         {
-            Console.WriteLine($"{stat.Tier}: {stat.Count} khách hàng");
+            Console.WriteLine($"{stat.Tier}: {stat.Count} khach hang");
         }
 
-        Console.WriteLine("\nNhấn phím bất kỳ để tiếp tục...");
+        Console.WriteLine("\nNhan phim bat ky de tiep tuc...");
         Console.ReadKey();
     }
 }
